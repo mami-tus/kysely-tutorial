@@ -1,0 +1,22 @@
+services:
+  postgres:
+    # PostgreSQL設定
+    # バージョン: 17.4 (最新安定版)
+    # このイメージはPostgreSQLの公式Dockerイメージです
+    image: postgres:17.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: kysely_tutorial
+    ports:
+      - '5432:5432'
+    volumes:
+      # ボリュームマウント
+      # PostgreSQLのデータを永続化するための設定
+      # コンテナが削除されてもデータは保持されます
+      - postgres-data:/var/lib/postgresql/data
+
+# ボリューム定義
+# postgres-data: PostgreSQLのデータを保存するための名前付きボリューム
+volumes:
+  postgres-data:
