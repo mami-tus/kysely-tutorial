@@ -9,6 +9,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "kysely-codegen": "^0.18.3",
     "prisma": "^6.4.1"
   }
 }
