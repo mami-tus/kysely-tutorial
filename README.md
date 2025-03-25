@@ -49,4 +49,12 @@ This project was created using `bun init` in bun v1.2.2. [Bun](https://bun.sh) i
       - Prisma 以外のマイグレーションツールを使用
       - データベースファーストの開発スタイル
       - **Prisma への依存を避けたい** ← これ重要そうなの kysely-codegen を使う
-- kysely-codegen をインストール
+- kysely-codegen を使った型定義生成手順
+  参考: https://github.com/RobinBlomberg/kysely-codegen
+
+1. 必要なパッケージのインストール
+
+```bash
+bun add --save-dev kysely-codegen
+bun add kysely pg
+```
