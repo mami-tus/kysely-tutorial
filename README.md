@@ -55,6 +55,27 @@ This project was created using `bun init` in bun v1.2.2. [Bun](https://bun.sh) i
 1. 必要なパッケージのインストール
 
 ```bash
-bun add --save-dev kysely-codegen
-bun add kysely pg
+bun add --save-dev kysely-codegen  # --save-devだとdevDependenciesにならない
+bun add kysel
 ```
+
+2. 型定義生成のための script を package.json に追加し、実行
+
+```json
+"scripts": {
+    "kysely": "kysely-codegen --out-file ./src/kysely/db.d.ts --camel-case --runtime-enums=false"
+  }
+```
+
+- ここで一旦 schema.prisma を DB に反映してないことに気づいたので
+  以下を実行、script にも追加
+
+```bash
+bun prisma migrate dev --name init
+```
+
+マイグレーションファイルが生成&適用されていた
+※ prisma migrate deploy: 既存のマイグレーションファイルのみを適用、生成しない
+※ prisma db push: マイグレーションファイルを生成せず直接反映
+
+再度 `bun kysely` で型定義生成された
