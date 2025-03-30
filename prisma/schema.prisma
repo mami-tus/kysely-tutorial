@@ -13,26 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
-  name       String?
-  created_at DateTime @default(now())
+model Shohin {
+  shohin_id     String    @id @db.Char(4)
+  shohin_mei    String    @db.VarChar(100)
+  shohin_bunrui String    @db.VarChar(32)
+  hanbai_tanka  Int?
+  shiire_tanka  Int?
+  torokubi      DateTime? @db.Date
 
-  posts Post[]
-
-  @@map("users")
-}
-
-model Post {
-  id         Int      @id @default(autoincrement())
-  title      String
-  content    String?
-  published  Boolean  @default(false)
-  created_at DateTime @default(now())
-  author_id  Int
-
-  author User @relation(fields: [author_id], references: [id])
-
-  @@map("posts")
+  @@map("shohin")
 }

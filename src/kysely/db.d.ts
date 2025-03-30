@@ -22,24 +22,16 @@ export interface _PrismaMigrations {
   startedAt: Generated<Timestamp>;
 }
 
-export interface Posts {
-  authorId: number;
-  content: string | null;
-  createdAt: Generated<Timestamp>;
-  id: Generated<number>;
-  published: Generated<boolean>;
-  title: string;
-}
-
-export interface Users {
-  createdAt: Generated<Timestamp>;
-  email: string;
-  id: Generated<number>;
-  name: string | null;
+export interface Shohin {
+  hanbaiTanka: number | null;
+  shiireTanka: number | null;
+  shohinBunrui: string;
+  shohinId: string;
+  shohinMei: string;
+  torokubi: Timestamp | null;
 }
 
 export interface DB {
   _PrismaMigrations: _PrismaMigrations;
-  posts: Posts;
-  users: Users;
+  shohin: Shohin;
 }
