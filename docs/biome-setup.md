@@ -1,6 +1,6 @@
-# Biome導入手順
+# Biome 導入手順
 
-[Biome](https://biomejs.dev/)はJavaScript/TypeScriptのための高速なフォーマッター・リンターです。ESLintやPrettierの代替として使用できます。
+[Biome](https://biomejs.dev/)は JavaScript/TypeScript のための高速なフォーマッター・リンターです。ESLint や Prettier の代替として使用できます。
 
 ## 1. インストール
 
@@ -60,7 +60,7 @@ npx @biomejs/biome init
 }
 ```
 
-## 4. VS Code統合
+## 4. VS Code 統合
 
 `.vscode/settings.json`ファイルに以下の設定を追加して、保存時に自動フォーマットとインポート整理を有効にする:
 
@@ -89,23 +89,61 @@ npx @biomejs/biome init
 }
 ```
 
-## 5. VS Code拡張機能のインストール
+## 5. VS Code 拡張機能のインストール
 
-VS Code拡張機能マーケットプレイスから「Biome」をインストールします。
+VS Code 拡張機能マーケットプレイスから「Biome」をインストールします。
 
 ## 6. 手動で実行する方法
 
 特定のファイルに対して:
+
 ```bash
 npx @biomejs/biome check --write src/file.ts
 ```
 
 プロジェクト全体に対して:
+
 ```bash
 npx @biomejs/biome check --write "src/**/*.{ts,js}"
 ```
 
 ## 7. 注意点
 
-- VS Code再起動後に設定が反映されます
-- Prettierなど他のフォーマッターと競合する場合があります
+- VS Code 再起動後に設定が反映されます
+- Prettier など他のフォーマッターと競合する場合があります
+
+## 8. Prettier との競合を避け、Biome を優先的に使う方法
+
+Prettier がインストールされている環境で Biome を優先的に使用するには、以下の設定を`.vscode/settings.json`に追加します：
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": true,
+    "source.fixAll.biome": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  // Prettierを無効化
+  "prettier.enable": false,
+  // 特定のファイルに対してはPrettierを無効化
+  "prettier.disableLanguages": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json"
+  ]
+}
+```

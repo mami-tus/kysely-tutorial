@@ -1,4 +1,4 @@
-# Kyselyチュートリアル セットアップガイド
+# Kysely チュートリアル セットアップガイド
 
 ## Kysely 公式の Getting started
 
