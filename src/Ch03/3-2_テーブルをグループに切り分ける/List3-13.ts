@@ -14,10 +14,3 @@ async function getShohin() {
   console.log(result);
 }
 getShohin();
-
-/**
- * select "shohin_bunrui",
-   count(*) as "count"
-from "shohin"
-group by "shohin_bunrui"
- */
