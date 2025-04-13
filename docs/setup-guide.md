@@ -55,8 +55,8 @@
 1. 必要なパッケージのインストール
 
 ```bash
-bun add --save-dev kysely-codegen  # --save-devだとdevDependenciesにならない
-bun add kysel
+bun add -dev kysely-codegen  # --save-devだとdevDependenciesにならない
+bun add kysely
 ```
 
 2. 型定義生成のための script を package.json に追加し、実行

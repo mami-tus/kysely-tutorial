@@ -31,7 +31,34 @@ export interface Shohin {
   torokubi: Timestamp | null;
 }
 
+export interface ShohinBunrui {
+  shohinBunrui: string;
+  sumHanbaiTanka: number | null;
+  sumShiireTanka: number | null;
+}
+
+export interface ShohinCopy {
+  hanbaiTanka: number | null;
+  shiireTanka: number | null;
+  shohinBunrui: string;
+  shohinId: string;
+  shohinMei: string;
+  torokubi: Timestamp | null;
+}
+
+export interface ShohinIns {
+  hanbaiTanka: Generated<number | null>;
+  shiireTanka: number | null;
+  shohinBunrui: string;
+  shohinId: string;
+  shohinMei: string;
+  torokubi: Timestamp | null;
+}
+
 export interface DB {
   _PrismaMigrations: _PrismaMigrations;
   shohin: Shohin;
+  shohinBunrui: ShohinBunrui;
+  shohinCopy: ShohinCopy;
+  shohinIns: ShohinIns;
 }

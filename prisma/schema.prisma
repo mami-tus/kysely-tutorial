@@ -34,3 +34,22 @@ model ShohinIns {
 
   @@map("shohin_ins")
 }
+
+model ShohinCopy {
+  shohin_id     String    @id @db.Char(4)
+  shohin_mei    String    @db.VarChar(100)
+  shohin_bunrui String    @db.VarChar(32)
+  hanbai_tanka  Int?
+  shiire_tanka  Int?
+  torokubi      DateTime? @db.Date
+
+  @@map("shohin_copy")
+}
+
+model ShohinBunrui {
+  shohin_bunrui    String @id @db.VarChar(32)
+  sum_hanbai_tanka Int?
+  sum_shiire_tanka Int?
+
+  @@map("shohin_bunrui")
+}
