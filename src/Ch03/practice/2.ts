@@ -5,11 +5,13 @@ async function getShohin() {
   const result = await db
     .selectFrom('shohin')
     .select((eb) => [
+      'shohinBunrui',
       eb.fn.sum<number>('hanbaiTanka').as('hanbaiTankaSum'),
       eb.fn.sum<number>('shiireTanka').as('shiireTankaSum'),
     ])
-    // 正しい書き方：ダブルクォートでカラム名を囲む
-    .having(sql<boolean>`sum("hanbai_tanka") * 1.5 > sum("shiire_tanka")`)
+    .groupBy('shohinBunrui')
+    // 正しい書き方：ダブルクォートでカラム名を囲むか、何もなし
+    .having(sql<boolean>`sum("hanbai_tanka") > sum("shiire_tanka") * 1.5`)
     .execute();
 
   console.log(result);
@@ -17,12 +19,13 @@ async function getShohin() {
 getShohin();
 
 /**
- * 販売単価の合計の1.5倍が仕入れ単価の合計より大きいものを求める
+ * havingメソッドに渡す条件式が論理値（boolean）を返す必要があるのでsql<boolean>で渡す
  *
- * SQL:
- * SELECT
- *   SUM(hanbai_tanka) AS hanbai_tanka_sum,
- *   SUM(shiire_tanka) AS shiire_tanka_sum
- * FROM shohin
- * HAVING SUM(hanbai_tanka) * 1.5 > SUM(shiire_tanka)
+SQL:
+select "shohin_bunrui",
+   sum("hanbai_tanka") as "hanbai_tanka_sum",
+   sum("shiire_tanka") as "shiire_tanka_sum"
+from "shohin"
+group by "shohin_bunrui"
+having sum("hanbai_tanka") > sum("shiire_tanka") * 1.5
  */
