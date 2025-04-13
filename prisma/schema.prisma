@@ -23,3 +23,14 @@ model Shohin {
 
   @@map("shohin")
 }
+
+model ShohinIns {
+  shohin_id     String    @id @db.Char(4)
+  shohin_mei    String    @db.VarChar(100)
+  shohin_bunrui String    @db.VarChar(32)
+  hanbai_tanka  Int?      @default(0)
+  shiire_tanka  Int?
+  torokubi      DateTime? @db.Date
+
+  @@map("shohin_ins")
+}
