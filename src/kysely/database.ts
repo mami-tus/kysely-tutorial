@@ -1,13 +1,13 @@
-import type { DB } from './db'; // this is the Database interface we defined earlier
-import { Pool } from 'pg';
 import { CamelCasePlugin, Kysely, PostgresDialect } from 'kysely';
+import { Pool } from 'pg';
+import type { DB } from './db'; // this is the Database interface we defined earlier
 
 // SQLクエリを見やすく整形する関数
 function formatSql(sql: string): string {
   // 簡易的なSQL整形（キーワードの後に改行を入れる）
   return sql
     .replace(
-      /\b(SELECT|FROM|WHERE|ORDER BY|GROUP BY|HAVING|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|LIMIT|OFFSET|UNION|INSERT|UPDATE|DELETE)\b/gi,
+      /\b(SELECT|FROM|WHERE|ORDER BY|GROUP BY|HAVING|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|LIMIT|OFFSET|UNION|INSERT|UPDATE|SET|DELETE)\b/gi,
       '\n$1'
     )
     .replace(/,/g, ',\n  ');
