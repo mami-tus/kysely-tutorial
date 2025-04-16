@@ -53,3 +53,13 @@ model ShohinBunrui {
 
   @@map("shohin_bunrui")
 }
+
+model ShohinSaeki {
+  shohin_id    String @id @db.Char(4)
+  shohin_mei   String @db.VarChar(100)
+  hanbai_tanka Int?
+  shiire_tanka Int?
+  saeki        Int?
+
+  @@map("shohin_saeki")
+}

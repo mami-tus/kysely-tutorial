@@ -55,10 +55,19 @@ export interface ShohinIns {
   torokubi: Timestamp | null;
 }
 
+export interface ShohinSaeki {
+  hanbaiTanka: number | null;
+  saeki: number | null;
+  shiireTanka: number | null;
+  shohinId: string;
+  shohinMei: string;
+}
+
 export interface DB {
   _PrismaMigrations: _PrismaMigrations;
   shohin: Shohin;
   shohinBunrui: ShohinBunrui;
   shohinCopy: ShohinCopy;
   shohinIns: ShohinIns;
+  shohinSaeki: ShohinSaeki;
 }
